@@ -29,3 +29,7 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
+mkdir -p ~/.vim/backup
+mkdir -p ~/.vim/temp
+
