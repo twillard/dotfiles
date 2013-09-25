@@ -6,12 +6,12 @@
 # -------------------- Import bashrc
 source ~/.bashrc
 
-# Default title to be set by PROMPT_COMMAND - .functions scripts may override or
+# Default title to be set by PROMPT_COMMAND - bash_profile.d scripts may override or
 # enhance this
 export PROMPT_TITLE="${HOSTNAME}"
 
 # -------------------- Machine-specific aliases and functions
-for file in ~/dotfiles/functions/*; do
+for file in $(find ~/dotfiles/bash_profile.d/ -type f); do
     source $file
 done
 
