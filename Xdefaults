@@ -1,0 +1,5 @@
+Rxvt*scrollBar_right: true
+Rxvt*saveLines: 50000
+Rxvt*background: black
+Rxvt*foreground: lightgrey
+

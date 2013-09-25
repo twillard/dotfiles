@@ -1,0 +1,46 @@
+# basic settings... self explainatory
+nethack on
+deflogin on
+autodetach on
+startup_message off
+
+# the dash makes it a login shell
+defshell -$SHELL
+shell -$SHELL
+activity ""
+bell_msg ""
+vbell off
+vbell_msg ""
+defscrollback 20480
+nonblock on
+defutf8 on
+defbce on
+defflow off
+msgwait 1
+altscreen on
+
+# only Shift+k to kill - prevent accidents
+bind k
+bind ^k
+bind K kill
+
+# resizing
+bind = resize =
+bind + resize +3
+bind - resize -3
+
+term "screen"
+terminfo rxvt ti@:te@:
+
+# Here comes the pain...
+hardstatus alwayslastline "%{=bu kg}(%H %l%)(%{= kw} %=%?%-Lw%?%{=b kc}((%n %t))%{= kw}%?%+Lw%?%= %{=bu kg})(%D %Y.%m.%d %0C%A)"
+
+# Override the default config so that screen doesn't automatically change the
+# xterm title on startup.
+termcapinfo xterm 'ds='
+
+#let pgup/pgdn scroll under urxvt (see .Xdefaults)
+bindkey "^[[5;2~" eval "copy" "stuff ^u"
+bindkey -m "^[[5;2~" stuff ^u
+bindkey -m "^[[6;2~" stuff ^d
+
