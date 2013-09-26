@@ -26,7 +26,6 @@ alias ls="ls --color=auto --group-directories-first"
 
 alias hh="TPC_IN_SAME_WINDOW=1 h"
 
-alias ccolab="/c/programs/codecollabclient/ccollab"
 alias tcl="_tcl"
 
 alias astyle="$(which astyle) -m0 -M120 -s4 --mode=c --align-reference=type --align-pointer=type --convert-tabs --add-brackets --indent-preprocessor --style=bsd"
