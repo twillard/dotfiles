@@ -4,5 +4,18 @@
 if [[ ! ${HOSTNAME} =~ "test" ]]; then return; fi
 
 alias screen="title \"${HOSTNAME%%.*}(screen)\"; screen"
-alias lssoak="tcl reserve res | grep soak | sed 's@  *@ @g' | cut -d' ' -f2,6- | sort | uniq"
+
+function lssoak() {
+    local soaks="_tcl reserve res 2>/dev/null | grep -i soak"
+
+    # "long" output
+    if [ "$1" == "-l" ]; then
+        for soak in $(eval $soaks | awk '{print $2}'); do
+            echo "-------------------------------------------------------------"
+            _tcl reserve show $soak 2>/dev/null
+        done
+    else
+        eval $soaks | awk '{printf "%s ", $2; for(i=6; i<=NF;++i) printf "%s ", $i; printf "\n";}' | sort | uniq
+    fi
+}
 
