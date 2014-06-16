@@ -147,11 +147,11 @@ esac
 function ssh()
 {
   if echo "$@" | grep -q swbuild; then
-    echo "SSH access to swbuild revoked.  Use the /net/swbuild/d2 share on lview machines.
+    echo "SSH access to swbuild revoked.  Use the /net/swbuild/d2 share on lview machines."
     return 1
   fi
 
-  exec $(which ssh) "$@"
+  $(which ssh) "$@"
 }
 
 function per_process_mem()
