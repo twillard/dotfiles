@@ -123,12 +123,36 @@ set -o noclobber
 set -o vi
 
 # -------------------- History Setup
+
+# Save the last 30,000 commands
 HISTFILESIZE=30000
 HISTSIZE=30000
+
+# Don't store ls, bg, fg, exit in history
 HISTIGNORE="&:ls:[bf]g:exit"
-HISTCONTROL=ignoredups
+
+# Strip duplicate commands from history
+HISTCONTROL=ignoredups:erasedups
+
+# Use separate history files for tpc, lview, and test machines
+case $(hostname) in
+    wtl-lview-* ) export HISTFILE="$HOME/.bash_history_lview" ;;
+    wtllab-test-* ) export HISTFILE="$HOME/.bash_history_test" ;;
+    TPC* ) export HISTFILE="$HOME/.bash_history_tpc" ;;
+esac
+
 
 # -------------------- Helpful Functions
+
+function ssh()
+{
+  if echo "$@" | grep -q swbuild; then
+    echo "SSH access to swbuild revoked.  Use the /net/swbuild/d2 share on lview machines.
+    return 1
+  fi
+
+  exec $(which ssh) "$@"
+}
 
 function per_process_mem()
 {
