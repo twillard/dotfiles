@@ -199,3 +199,43 @@ let Cscope_AutoClose = 1
 " Don't automatically jump to the first match
 let Cscope_JumpError = 0
 
+" Function that creates an include guard for me, according to nkaun
+function! IncludeGuard()
+    let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+
+    set paste
+
+    execute "normal! 1G"
+    execute "normal! O#ifndef " . gatename
+    execute "normal! o#define " . gatename
+    execute "normal! Go#endif //" . gatename
+    execute "normal! Go"
+
+    set nopaste
+endfunction
+
+command! -nargs=0 IG :call IncludeGuard()
+
+" Generate an initial testcase stub
+function! GenerateTestcase()
+    let testname = substitute(expand("%:t"), "\\.test$", "", "g")
+    let testname = substitute(testname, "^t_", "", "g")
+
+    set paste
+
+    execute "normal! 1Gi#include <cxxtest/TestSuite.h>"
+    execute "normal! o"
+    execute "normal! oclass " . testname . "Test : public CxxTest::TestSuite"
+    execute "normal! o{"
+    execute "normal! opublic:"
+    execute "normal! o    void setUp();"
+    execute "normal! o    void tearDown();"
+    execute "normal! o"
+    execute "normal! o    void TestXXX();"
+    execute "normal! o};"
+    execute "normal! o"
+
+    set nopaste
+endfunction
+
+command! -nargs=0 GT :call GenerateTestcase()

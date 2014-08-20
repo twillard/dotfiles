@@ -28,8 +28,8 @@ alias ml6="make CPU=LINUX_6_64"
 # Make the title something useful before invoking screen
 alias screen="title \"$(hostname | cut -d. -f1)(screen)\"; screen"
 
-unalias make 2>/dev/null
-alias make="$(which make) -rRs --no-print-directory C++OVERVIRT=-Wno-overloaded-virtual"
+# Use the nonrecursive make infrastructure, when it becomes available
+export USE_NONRECURSIVE_MAKE=1
 
 function covbr()
 {
