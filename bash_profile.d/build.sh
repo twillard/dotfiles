@@ -29,7 +29,7 @@ alias ml6="make CPU=LINUX_6_64"
 alias screen="title \"$(hostname | cut -d. -f1)(screen)\"; screen"
 
 # Use the nonrecursive make infrastructure, when it becomes available
-export USE_NONRECURSIVE_MAKE=1
+# export USE_NONRECURSIVE_MAKE=1
 
 function covbr()
 {
