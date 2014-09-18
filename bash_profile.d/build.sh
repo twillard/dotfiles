@@ -25,6 +25,11 @@ alias m964="make CPU=SVOS9_64"
 alias ml5="make CPU=LINUX_64"
 alias ml6="make CPU=LINUX_6_64"
 
+alias m932b="make CPU=SVOS9 BUILD_OPTS=BULLSEYE"
+alias m964b="make CPU=SVOS9_64 BUILD_OPTS=BULLSEYE"
+alias ml5b="make CPU=LINUX_64 BUILD_OPTS=BULLSEYE"
+alias ml6b="make CPU=LINUX_6_64 BUILD_OPTS=BULLSEYE"
+
 # Make the title something useful before invoking screen
 alias screen="title \"$(hostname | cut -d. -f1)(screen)\"; screen"
 

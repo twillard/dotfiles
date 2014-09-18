@@ -7,9 +7,20 @@ syntax on
 " Autodetect file type, enable auto-indenting, enable filetype plugin loading
 filetype indent plugin on
 
+" OmniCPP
+set tags+=~/.vim/tags/cpp
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
+set complete-=i
 
 " Shell to use
 set shell=/bin/bash
@@ -106,7 +117,8 @@ set selection=inclusive
 " Enable folding, fold on indent level, default to unfolded
 if has("folding")
     set foldenable
-    set foldmethod=indent
+    " set foldmethod=indent
+    set foldmethod=manual
     set foldlevel=99
 endif
 
@@ -201,7 +213,9 @@ let Cscope_JumpError = 0
 
 " Function that creates an include guard for me, according to nkaun
 function! IncludeGuard()
-    let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+    let curDir = toupper(expand(expand("%:p:h:t")))
+    let curFile = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+    let gatename = "SV_" . curDir . "_" . curFile
 
     set paste
 
@@ -218,8 +232,7 @@ command! -nargs=0 IG :call IncludeGuard()
 
 " Generate an initial testcase stub
 function! GenerateTestcase()
-    let testname = substitute(expand("%:t"), "\\.test$", "", "g")
-    let testname = substitute(testname, "^t_", "", "g")
+    let testname = substitute(expand("%:t:r"), "^t_", "", "g")
 
     set paste
 
