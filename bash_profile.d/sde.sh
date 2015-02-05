@@ -6,6 +6,7 @@ if [[ $PATH =~ "cygwin" ]]; then return; fi
 
 # Only source this file on an SDE (any Linux machine without /view)
 if [ $(uname) != "Linux" -o -d /view ]; then return; fi
+if [[ $(hostname) =~ "VirtualBox" ]]; then return; fi
 
 # Slightly modify the title that's set by the PROMPT_COMMAND
 export PROMPT_TITLE="$PROMPT_TITLE(SDE)"
