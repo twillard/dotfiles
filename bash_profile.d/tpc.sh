@@ -21,6 +21,8 @@ alias mibTriggers="pdbc -c 'lst /iso/org/dod/internet/mgmt/mib-2/dismanEventMIB/
 alias clearlatency="pdbc -c 'set devices/subscriberMap/1/latency/config/clearStats true'"
 alias latency="pdbc -c 'ls devices/subscriberMap/1/latency/config/; lst devices/subscriberMap/1/latency/messaging/detailsTable/; lst devices/subscriberMap/1/latency/messaging/histogramTable/'"
 
+export TERM=xterm
+
 # -------------------- Helpful Functions
 function gdb()
 {

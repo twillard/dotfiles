@@ -6,6 +6,8 @@ if [[ ! $PATH =~ "clearcase" ]]; then return; fi
 export SVDIFF="diff -u --ignore-all-space"
 export DIFF_TOOL="diff -u --ignore-all-space"
 
+alias myviews='cleartool lsview | grep $USER | sed -e "s/^\*/ /" | sort'
+
 alias cdiff="cleartool diff -pre -gra"
 alias chist="cleartool lshist -gra"
 alias ctxlsv="cleartool lsvtree -gra"

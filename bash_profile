@@ -58,6 +58,11 @@ chtitle()
 alias psg="ps aux | head -1; ps aux | grep"
 alias pstree="ps auxf"
 
+#----------------------------------------------------------------
+# Stuff we only care about in interactive terminals
+#----------------------------------------------------------------
+if tty -s; then
+
 # -------------------- Prompt
 # Colours
 # Black       0;30     Dark Gray     1;30
@@ -122,6 +127,13 @@ set -o noclobber
 # Use vi terminal emulation
 set -o vi
 
+fi
+
+#----------------------------------------------------------------
+# End interactive terminal block
+#----------------------------------------------------------------
+
+
 # -------------------- History Setup
 
 # Save the last 30,000 commands
@@ -140,7 +152,6 @@ case $(hostname) in
     wtllab-test-* ) export HISTFILE="$HOME/.bash_history_test" ;;
     TPC* ) export HISTFILE="$HOME/.bash_history_tpc" ;;
 esac
-
 
 # -------------------- Helpful Functions
 

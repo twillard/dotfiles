@@ -29,7 +29,8 @@ bind = resize =
 bind + resize +3
 bind - resize -3
 
-term "screen"
+#term "screen"
+term "xterm"
 terminfo rxvt ti@:te@:
 
 # Here comes the pain...
