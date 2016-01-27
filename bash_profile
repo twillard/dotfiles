@@ -54,8 +54,12 @@ chtitle()
   export PROMPT_TITLE="$@"
 }
 
+function psg()
+{
+    ps aux | awk "NR<2 {print} /$@/ {print}"
+}
+
 # -------------------- Aliases
-alias psg="ps aux | head -1; ps aux | grep"
 alias pstree="ps auxf"
 
 #----------------------------------------------------------------
@@ -154,16 +158,6 @@ case $(hostname) in
 esac
 
 # -------------------- Helpful Functions
-
-function ssh()
-{
-  if echo "$@" | grep -q swbuild; then
-    echo "SSH access to swbuild revoked.  Use the /net/swbuild/d2 share on lview machines."
-    return 1
-  fi
-
-  $(which ssh) "$@"
-}
 
 function per_process_mem()
 {
