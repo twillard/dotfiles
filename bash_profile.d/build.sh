@@ -48,3 +48,8 @@ function covbr()
             --no-time --no-banner --all $@
 }
 
+function extract_rpm()
+{
+    rpm2cpio $1 | cpio -idmv
+}
+
