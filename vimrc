@@ -213,26 +213,5 @@ let Cscope_AutoClose = 1
 let Cscope_JumpError = 0
 
 source ~/.vim/config/include-guard.vim
+source ~/.vim/config/class-generator.vim
 
-" Generate an initial testcase stub
-function! GenerateTestcase()
-    let testname = substitute(expand("%:t:r"), "^t_", "", "g")
-
-    set paste
-
-    execute "normal! 1Gi#include <cxxtest/TestSuite.h>"
-    execute "normal! o"
-    execute "normal! oclass " . testname . "Test : public CxxTest::TestSuite"
-    execute "normal! o{"
-    execute "normal! opublic:"
-    execute "normal! o    void setUp();"
-    execute "normal! o    void tearDown();"
-    execute "normal! o"
-    execute "normal! o    void TestXXX();"
-    execute "normal! o};"
-    execute "normal! o"
-
-    set nopaste
-endfunction
-
-command! -nargs=0 GT :call GenerateTestcase()
