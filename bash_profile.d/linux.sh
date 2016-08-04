@@ -5,7 +5,7 @@
 # Check uname second, slower on Cygwin but won't get hit
 if [ $(uname) != "Linux" ]; then return; fi
 
-alias mstsc="rdesktop -u $USER -d SANDVINE -g1024x768 -5 -K -r clipboard:CLIPBOARD"
+alias mstsc="rdesktop -u $USER -d SANDVINE -g1366x768 -5 -K -r clipboard:CLIPBOARD -r sound:local"
 
 # -------------------- Helpful Aliases
 alias grep="grep --color=auto"
