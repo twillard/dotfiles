@@ -33,8 +33,31 @@ bind - resize -3
 term "xterm"
 terminfo rxvt ti@:te@:
 
-# Here comes the pain...
-hardstatus alwayslastline "%{=bu kg}(%H %l%)(%{= kw} %=%?%-Lw%?%{=b kc}((%n %t))%{= kw}%?%+Lw%?%= %{=bu kg})(%D %Y.%m.%d %0C%A)"
+#########################################################
+# Here comes the pain.  Status line declarations are nuts.
+# Note you can do 'hardstatus alwayslastline' to show something at the bottom of
+# the screen window always, or 'caption always' to show it at the bottom of
+# every split
+
+# This one shows hostname, server load, window lists, then date
+# hardstatus alwayslastline "%{=bu kg}(%H %l%)(%{= kw} %=%?%-Lw%?%{=b kc}((%n %t))%{= kw}%?%+Lw%?%= %{=bu kg})(%D %Y.%m.%d %0C%A)"
+
+# This shows a centered window list, with the current window highlighted
+#caption always "%{= kw} %=%?%-Lw%?%{=b kc}%n %t%{= kw}%?%+Lw%?%= %{=bu kg}"
+
+# This shows a left-aligned window list, with the current window highlighted
+caption always "%{= kw}%?%-Lw%?%{=b kc}%n %t%{= kw}%?%+Lw%?%{=bu kg}"
+
+# This shows just the current window in a status at the bottom of screen
+# hardstatus alwayslastline "%= %3n %t%? [%h]%? %="
+
+# This shows the window list with the current window bolded, centered, and
+# surrounded by brackets
+#caption always "%= %-w%L>%{= BW}((%n*%t))%{-}%52<%+w %L="
+
+# Disable the hardstatus line if we're not using it above
+hardstatus ignore
+#########################################################
 
 # Override the default config so that screen doesn't automatically change the
 # xterm title on startup.
