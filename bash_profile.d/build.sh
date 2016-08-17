@@ -23,13 +23,16 @@ alias ml5="make CPU=LINUX_64"
 alias ml6="make CPU=LINUX_6_64"
 alias ml7="make CPU=LINUX_7_64"
 
-alias m932b="make CPU=SVOS9 BUILD_OPTS=BULLSEYE"
-alias m964b="make CPU=SVOS9_64 BUILD_OPTS=BULLSEYE"
-alias ml5b="make CPU=LINUX_64 BUILD_OPTS=BULLSEYE"
-alias ml6b="make CPU=LINUX_6_64 BUILD_OPTS=BULLSEYE"
-alias ml7b="make CPU=LINUX_7_64 BUILD_OPTS=BULLSEYE"
-
 alias cloc="perl /view/swbuild_main/vobs/fw-tools/scripts/py/loc/bin/cloc-1.53.pl --force-lang=c++"
+
+gnu_make_complete()
+{
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    local unit_tests="$(ls | sed 's/t_\([^\.]*\)\.test/t_\1\.test \1/g')"
+    local options="CMDCFLAGS CPU TEST_GDB TEST_VALGRIND TEST_GCOV=html"
+    COMPREPLY=( $(compgen -W "$unit_tests $options" -- $cur) )
+}
+complete -F unittest_complete make
 
 # Use the nonrecursive make infrastructure, when it becomes available
 # export USE_NONRECURSIVE_MAKE=1
