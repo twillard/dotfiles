@@ -28,7 +28,7 @@ gnu_make_complete()
 
     local targets="test test_checkbuild"
 
-    local unit_tests="$(ls t_*.test | sed 's/t_\([^\.]*\)\.test/t_\1\.test \1/g')"
+    local unit_tests="$(ls t_*.test | sed 's/t_\([^\.]*\)\.test/\1/g')"
 
     local general_options="ALLDEPS=1 CMDCFLAGS="
     local cpu_options="CPU=SVOS9_64 CPU=SVOS10_64 CPU=LINUX_6_64 CPU=LINUX_7_64"
