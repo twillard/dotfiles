@@ -22,25 +22,7 @@ alias ml7="make -j32 CPU=LINUX_7_64"
 
 alias cloc="perl /view/swbuild_main/vobs/fw-tools/scripts/py/loc/bin/cloc-1.53.pl --force-lang=c++"
 
-gnu_make_complete()
-{
-    local cur=${COMP_WORDS[COMP_CWORD]}
-
-    local targets="test test_checkbuild"
-
-    local unit_tests="$(ls t_*.test | sed 's/t_\([^\.]*\)\.test/\1/g')"
-
-    local general_options="ALLDEPS=1 CMDCFLAGS="
-    local cpu_options="CPU=SVOS9_64 CPU=SVOS10_64 CPU=LINUX_6_64 CPU=LINUX_7_64"
-    local compiler_options="USE_CLANG=1 GCC_VERSION= CLANG_VERSION="
-    local debug_options="NDEBUG=NDEBUG NDEBUG=DEBUG"
-    local gcov_options="TEST_GCOV=html TEST_GCOV=1 GCOVROPTS="
-    local test_options="TEST_GDB=1 TEST_VALGRIND=0 TEST_FILTER= TEST_HELGRIND=1 TEST_BUILDONLY=1 TEST_SPECIFIC= TEST_EXEC_ARGS= TEST_RERUN_FAILURES=1 TEST_FORCE_RUN=1"
-
-    local options="$general_options $cpu_options $compiler_options $debug_options $gcov_options $test_options"
-
-    COMPREPLY=( $(compgen -W "$targets $unit_tests $options" -- $cur) )
-}
+# gnu_make_complete defined in svdev
 complete -F gnu_make_complete make
 complete -F gnu_make_complete m932
 complete -F gnu_make_complete m964
