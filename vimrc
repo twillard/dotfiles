@@ -31,6 +31,12 @@ set statusline=%-3.3n\ %f\ %h%m%r%w[%{strlen(&filetype)?&filetype:'?'},%{&encodi
 " Show line/col/percentage if statusline is unset
 set ruler
 
+" Highlight current line
+set cursorline
+
+" Line numbering on left
+set number
+
 " Set delete and backspace keys.
 if &term == "xterm"
     set t_kb=
