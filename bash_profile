@@ -4,7 +4,9 @@
 # possible in here to speed-up cygwin startup
 
 # -------------------- Import bashrc
-source ~/.bashrc
+if [ -f ~/.bashrc ]; then
+    source ~/.bashrc
+fi
 
 # Default title to be set by PROMPT_COMMAND - bash_profile.d scripts may override or
 # enhance this
