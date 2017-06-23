@@ -1,3 +1,20 @@
+" Specify the vim-plug directory
+call plug#begin('~/.local/share/nvim/plugged')
+
+" Code copletion engine for vim
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+
+Plug 'lyuts/vim-rtags'
+
+" Syntax checking hacks for vim
+Plug 'vim-syntastic/syntastic'
+
+" tree file navigation
+Plug 'scrooloose/nerdtree'
+
+" Initialize plugin system
+call plug#end()
+
 " VIM runs in non-vi-compatible mode
 set nocompatible
 
@@ -6,6 +23,10 @@ syntax on
 
 " Autodetect file type, enable auto-indenting, enable filetype plugin loading
 filetype indent plugin on
+
+" YouCompleteMe
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/ycm_extra_conf.py"
 
 " OmniCPP
 set tags+=~/.vim/tags/cpp
