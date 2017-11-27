@@ -6,11 +6,32 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 
 Plug 'lyuts/vim-rtags'
 
+" Language syntax/tab stuff
+Plug 'sheerun/vim-polyglot'
+
 " Syntax checking hacks for vim
 Plug 'vim-syntastic/syntastic'
 
 " tree file navigation
 Plug 'scrooloose/nerdtree'
+
+" Fuzzy find
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+
+" Searching with 'ag'
+Plug 'mileszs/ack.vim'
+
+" Adds bracket keybindings like [q ]q
+Plug 'tpope/vim-unimpaired'
+
+" Git status in gutter
+Plug 'airblade/vim-gitgutter'
+
+" Rainbow parens
+Plug 'junegunn/rainbow_parentheses.vim'
+
+" Solarized colorscheme
+Plug 'altercation/vim-colors-solarized'
 
 " Initialize plugin system
 call plug#end()
@@ -18,15 +39,29 @@ call plug#end()
 " VIM runs in non-vi-compatible mode
 set nocompatible
 
-" Enable syntax highlighting
-syntax on
+" Set leader
+let mapleader=","
 
 " Autodetect file type, enable auto-indenting, enable filetype plugin loading
 filetype indent plugin on
 
+" Clang-format support
+source /Volumes/android/black-coral/scripts/clang-format/clang-format.vim
+
 " YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/ycm_extra_conf.py"
+nmap <Leader>t :YcmCompleter GetType<CR>
+
+" Ack
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
+
+" Fzf
+nmap ; :Buffers<CR>
+nmap <Leader>f :Files<CR>
+nmap <Leader>r :Tags<CR>
 
 " OmniCPP
 set tags+=~/.vim/tags/cpp
@@ -70,8 +105,10 @@ if !has("gui_running") && version >= 700
     set listchars=tab:>-
 endif
 
-" Desert is a nice colorscheme
-colorscheme desert
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 
 " Highlight extra whitespace after the end of a line
 if has("autocmd") && version >= 700
@@ -198,6 +235,8 @@ if has("autocmd")
     au FileType make setlocal tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 
 endif
+
+nmap \x :cclose<CR>
 
 " Normal Mode bindings for switching windows
 noremap <c-h> <c-w><c-h>
