@@ -29,9 +29,9 @@ bind = resize =
 bind + resize +3
 bind - resize -3
 
-#term "screen"
-term "xterm"
-terminfo rxvt ti@:te@:
+term "screen-256color-bce"
+#term "xterm"
+#terminfo rxvt ti@:te@:
 
 #########################################################
 # Here comes the pain.  Status line declarations are nuts.
@@ -46,7 +46,7 @@ terminfo rxvt ti@:te@:
 #caption always "%{= kw} %=%?%-Lw%?%{=b kc}%n %t%{= kw}%?%+Lw%?%= %{=bu kg}"
 
 # This shows a left-aligned window list, with the current window highlighted
-caption always "%{= kw}%?%-Lw%?%{=b kc}%n %t%{= kw}%?%+Lw%?%{=bu kg}"
+caption always "%{=u kw}%?%-Lw%?%{=bu kc}%n %t%{=u kw}%?%+Lw%?%{=bu kg}%="
 
 # This shows just the current window in a status at the bottom of screen
 # hardstatus alwayslastline "%= %3n %t%? [%h]%? %="

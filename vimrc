@@ -27,9 +27,6 @@ Plug 'tpope/vim-unimpaired'
 " Git status in gutter
 Plug 'airblade/vim-gitgutter'
 
-" Rainbow parens
-Plug 'junegunn/rainbow_parentheses.vim'
-
 " Solarized colorscheme
 Plug 'altercation/vim-colors-solarized'
 
@@ -107,6 +104,7 @@ endif
 
 syntax enable
 set background=dark
+set t_Co=256
 let g:solarized_termcolors=256
 colorscheme solarized
 
