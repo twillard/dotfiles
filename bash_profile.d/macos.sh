@@ -15,6 +15,10 @@ if [[ ! ":$PATH:" =~ ":/usr/local/bin:" ]]; then
   export PATH="/usr/local/bin:$PATH"
 fi
 
+if [[ ! ":$PATH:" =~ ":/usr/local/sbin:" ]]; then
+  export PATH="/usr/local/sbin:$PATH"
+fi
+
 if [ -x $(which exa 2>/dev/null) ]; then
     alias ls="exa"
 fi
@@ -49,7 +53,7 @@ fi
 ##
 ## Android SDK
 ##
-export ANDROID_SDK=/usr/local/Cellar/android-sdk/r17
+export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r17
 export ANDROID_NDK=/usr/local/Cellar/android-ndk/r7b
 
 # Make the title something useful before invoking screen

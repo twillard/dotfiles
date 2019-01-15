@@ -30,6 +30,9 @@ Plug 'airblade/vim-gitgutter'
 " Solarized colorscheme
 Plug 'altercation/vim-colors-solarized'
 
+" vim-surround
+Plug 'tpope/vim-surround'
+
 " Initialize plugin system
 call plug#end()
 
@@ -42,10 +45,16 @@ let mapleader=","
 " Autodetect file type, enable auto-indenting, enable filetype plugin loading
 filetype indent plugin on
 
+" Vim-surround
+" Use ASCII 83 (uppercase S) to wrap highlighted text in interface comment
+let g:surround_83 = "/// @name \1name: \1 implementation" . "\n" . "/// @{" . "\r" . "\n" . "/// @}"
+
 " Clang-format support
+let g:bc_clang_format_on_write = 1
 source /Volumes/android/black-coral/scripts/clang-format/clang-format.vim
 
 " YouCompleteMe
+let g:ycm_always_populate_location_list = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/ycm_extra_conf.py"
 nmap <Leader>t :YcmCompleter GetType<CR>

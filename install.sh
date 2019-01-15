@@ -12,6 +12,10 @@ files="tmux.conf vimrc vim Xdefaults bash_profile screenrc"    # list of files/f
 
 ##########
 
+# install submodules
+git submodule init
+( cd submodules/bashmarks/; make install )
+
 # create dotfiles_old in homedir
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 mkdir -p $olddir

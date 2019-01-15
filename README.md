@@ -8,5 +8,5 @@ To use:
 - cd ~
 - git clone
 - cd dotfiles
-- ./makesymlinks.sh
+- ./install.sh
 

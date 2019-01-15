@@ -19,20 +19,28 @@ done
 
 # -------------------- Exports
 
-# Add $HOME/bin to path if it's not in there
-if [[ ! ":$PATH:" =~ ":$HOME/bin:" ]]; then
-  export PATH="$PATH:$HOME/bin"
-fi
+prepend_to_path() {
+    if [[ ! ":$PATH:" =~ ":$1:" ]]; then
+        echo "$1:$PATH"
+    else
+        echo "$PATH"
+    fi
+}
 
-# Add /root/bin to path if it's not in there
-if [[ ! ":$PATH:" =~ ":/root/bin:" ]]; then
-  export PATH="$PATH:/root/bin"
-fi
+append_to_path() {
+    if [[ ! ":$PATH:" =~ ":$1:" ]]; then
+        echo "$PATH:$1"
+    else
+        echo "$PATH"
+    fi
+}
 
-# Add /sbin to path if it's not in there
-if [[ ! ":$PATH:" =~ ":/sbin:" ]]; then
-  export PATH="$PATH:/sbin"
-fi
+export PATH="$(append_to_path "$HOME/bin")"
+export PATH="$(append_to_path "$HOME/.local/bin")"
+export PATH="$(append_to_path "/root/bin")"
+export PATH="$(append_to_path "/sbin")"
+export PATH="$(prepend_to_path "/opt/local/bin")"
+export PATH="$(prepend_to_path "/opt/local/sbin")"
 
 export LC_COLLATE=C
 export EDITOR="vim"
@@ -140,6 +148,7 @@ fi
 # End interactive terminal block
 #----------------------------------------------------------------
 
+source ~/.local/bin/bashmarks.sh
 
 # -------------------- History Setup
 
@@ -152,13 +161,6 @@ HISTIGNORE="&:ls:[bf]g:exit"
 
 # Strip duplicate commands from history
 HISTCONTROL=ignoredups:erasedups
-
-# Use separate history files for tpc, lview, and test machines
-case $(hostname) in
-    wtl-lview-* ) export HISTFILE="$HOME/.bash_history_lview" ;;
-    wtllab-test-* ) export HISTFILE="$HOME/.bash_history_test" ;;
-    TPC* ) export HISTFILE="$HOME/.bash_history_tpc" ;;
-esac
 
 # -------------------- Helpful Functions
 
@@ -206,12 +208,3 @@ function calc()
 }
 
 # vim: set ts=2 sw=2 et:
-
-##
-# Your previous /Users/travis.willard/.bash_profile file was backed up as /Users/travis.willard/.bash_profile.macports-saved_2017-07-04_at_13:10:22
-##
-
-# MacPorts Installer addition on 2017-07-04_at_13:10:22: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-
